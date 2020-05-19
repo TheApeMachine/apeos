@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://ui/video.gd" type="Script" id=1]
+[ext_resource path="res://fs/bunny.ogv" type="VideoStream" id=2]
+
+[node name="video" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VideoPlayer" type="VideoPlayer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+stream = ExtResource( 2 )
+volume_db = -80.0
+autoplay = true
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": "	"
+}

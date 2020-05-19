@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/ohoh.wav-34798c7f5f2a1655c965ea34250e212c.sample"
+
+[deps]
+
+source_file="res://sfx/ohoh.wav"
+dest_files=[ "res://.import/ohoh.wav-34798c7f5f2a1655c965ea34250e212c.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

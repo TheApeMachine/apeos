@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/error-soft.wav-10918367cc2021b85ce22f36b31ad5b5.sample"
+
+[deps]
+
+source_file="res://sfx/error-soft.wav"
+dest_files=[ "res://.import/error-soft.wav-10918367cc2021b85ce22f36b31ad5b5.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0
