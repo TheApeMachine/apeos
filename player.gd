@@ -54,7 +54,7 @@ func _on_Peers_pressed():
 		_log(client.rtc_mp.get_peer(k))
 
 func start():
-	client.start("localhost:1235")
+	client.start("localhost:1235", "apetest")
 
 func _on_Seal_pressed():
 	client.seal_share()

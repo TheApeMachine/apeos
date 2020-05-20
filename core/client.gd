@@ -34,7 +34,7 @@ func _create_peer(id):
 	var peer: WebRTCPeerConnection = WebRTCPeerConnection.new()
 	
 	peer.initialize({
-		"iseServers": [{"urls": ["stun:stun.l.google.com:19302"]}]
+		"iceServers": [{"urls": ["stun:stun.l.google.com:19302"]}]
 	})
 	
 	peer.connect("session_description_created", self, "_offer_created", [id])
