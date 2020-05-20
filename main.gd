@@ -13,13 +13,21 @@ onready var buffer = preload("res://buffer.tscn")
 var seqs: Array = []
 onready var seq = preload("res://bin/seq.tscn")
 
-var cam_pointer = 0
-var should_lerp = true
+var cam_pointer: int = 0
+var should_lerp: bool = true
+
+var server: Server
+var client: Client
 
 func _ready() -> void:
 	connect("add_buffer", self, "_on_add_buffer")
 	connect("grab_focus", self, "_on_grab_focus")
 	connect("play_buffer", self, "_on_play_buffer")
+
+	server = Server.new()
+	server.listen(1235)
+	
+	client = Client.new()
 
 func _input(event) -> void:
 	if event.is_pressed():
@@ -35,8 +43,10 @@ func _input(event) -> void:
 				emit_signal("grab_focus", "next")
 			elif event.scancode == KEY_ALT:
 				should_lerp = true
-			
+
 func _process(delta):
+	var msg = client.poll()
+	
 	if len(buffers) > 0 && should_lerp:
 		$Camera.global_transform.origin = lerp(
 			$Camera.transform.origin,
@@ -62,7 +72,7 @@ func _on_grab_focus(buffer_target) -> void:
 				cam_pointer -= 1
 			"next":
 				cam_pointer += 1
-				
+
 		if !$Move.playing:
 			$Move.play()
 		#position_camera()
@@ -82,7 +92,7 @@ func _on_kill_buffer(buffer_instance) -> void:
 	buffers.erase(buffer_instance)
 	buffer_instance.queue_free()
 	position_buffers()
-	
+
 func _on_play_buffer() -> void:
 	if len(locks) < 2:
 		logger.trace("main._on_play_buffer", "")
@@ -105,13 +115,13 @@ func _on_remove_lock(buffer_target) -> void:
 	logger.trace("main._on_remove_lock", buffer_target)
 	locks.erase(buffer_target)
 	logger.trace("main.locks", locks)
-	
+
 	if len(locks) == 0:
 		logger.trace("main.queue", queue)
 
 		for i in range(4):
 			var q = queue.pop_front()
-	
+
 			if q[1] == "grab_focus":
 				emit_signal("grab_focus", q[0])
 			elif q[1] == "play_buffer":

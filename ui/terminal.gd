@@ -1,15 +1,11 @@
 extends Control
 
-signal add_buffer(buffer_type, content)
-signal kill_buffer(buffer_instance)
 signal add_seq(content)
 
 onready var buffer = get_parent().get_parent()
 onready var root   = buffer.get_parent()
 
 func _ready():
-	connect("add_buffer", root, "_on_add_buffer")
-	connect("kill_buffer", root, "_on_kill_buffer")
 	connect("add_seq", root, "_on_add_seq")
 
 func _input(event):

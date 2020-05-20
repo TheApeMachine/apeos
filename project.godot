@@ -8,9 +8,26 @@
 
 config_version=4
 
-_global_script_classes=[  ]
+_global_script_classes=[ {
+"base": "Node",
+"class": "Client",
+"language": "GDScript",
+"path": "res://core/network/client.gd"
+}, {
+"base": "",
+"class": "MultiplayerClient",
+"language": "GDScript",
+"path": "res://core/network/multiplayer_client.gd"
+}, {
+"base": "Node",
+"class": "Server",
+"language": "GDScript",
+"path": "res://core/network/server.gd"
+} ]
 _global_script_class_icons={
-
+"Client": "",
+"MultiplayerClient": "",
+"Server": ""
 }
 
 [application]
@@ -30,6 +47,10 @@ window/size/width=2560
 window/size/height=1600
 window/size/resizable=false
 window/size/fullscreen=true
+
+[gdnative]
+
+singletons=[ "res://webrtc/webrtc.tres" ]
 
 [gui]
 
