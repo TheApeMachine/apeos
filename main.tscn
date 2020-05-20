@@ -1,8 +1,11 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://main.gd" type="Script" id=1]
 [ext_resource path="res://textures/grid.png" type="Texture" id=2]
+[ext_resource path="res://server.gd" type="Script" id=3]
 [ext_resource path="res://sfx/move.wav" type="AudioStream" id=4]
+[ext_resource path="res://player.gd" type="Script" id=5]
+[ext_resource path="res://core/client.gd" type="Script" id=6]
 
 [sub_resource type="QuadMesh" id=1]
 
@@ -68,3 +71,12 @@ volume_db = -9.0
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource( 4 )
+
+[node name="server" type="Node" parent="."]
+script = ExtResource( 3 )
+
+[node name="player" type="Node" parent="."]
+script = ExtResource( 5 )
+
+[node name="client" type="Node" parent="player"]
+script = ExtResource( 6 )

@@ -16,18 +16,13 @@ onready var seq = preload("res://bin/seq.tscn")
 var cam_pointer: int = 0
 var should_lerp: bool = true
 
-var server: Server
-var client: Client
-
 func _ready() -> void:
 	connect("add_buffer", self, "_on_add_buffer")
 	connect("grab_focus", self, "_on_grab_focus")
 	connect("play_buffer", self, "_on_play_buffer")
-
-	server = Server.new()
-	server.listen(1235)
 	
-	client = Client.new()
+	$server.listen(1235)
+	$player.start()
 
 func _input(event) -> void:
 	if event.is_pressed():
@@ -45,8 +40,6 @@ func _input(event) -> void:
 				should_lerp = true
 
 func _process(delta):
-	var msg = client.poll()
-	
 	if len(buffers) > 0 && should_lerp:
 		$Camera.global_transform.origin = lerp(
 			$Camera.transform.origin,
